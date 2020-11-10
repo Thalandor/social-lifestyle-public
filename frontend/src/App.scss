@@ -1,0 +1,13 @@
+$header-height: 45px;
+.App {
+  display: flex;
+  flex-direction: column;
+  .header{
+    height: $header-height;
+    background-color: grey;
+  }  
+
+  .main{
+    height: calc(100% - $header-height);
+  }
+}

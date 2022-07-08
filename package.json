@@ -1,0 +1,12 @@
+{
+  "name": "social-lifestyle-public",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Thalandor/social-lifestyle-public.git",
+  "author": "<thalandor1985@hotmail.com>",
+  "license": "MIT",
+  "packageManager": "yarn@3.2.1",
+  "workspaces": [
+    "packages/*"
+  ]
+}

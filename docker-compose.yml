@@ -12,7 +12,7 @@ services:
   webapp:
     stdin_open: true # Needed, seems a bug with react-scripts 3.4.1 :(
     build:
-      context: ./frontend
+      context: ./packages/frontend
       dockerfile: Dockerfile
     volumes:
       - /app/node_modules
@@ -25,7 +25,7 @@ services:
       - backend    
   backend:
     build:
-      context: ./backend
+      context: ./packages/backend
       dockerfile: Dockerfile
     ports:
       - '3001:3001'

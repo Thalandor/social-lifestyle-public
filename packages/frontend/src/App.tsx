@@ -1,6 +1,5 @@
-import React from 'react';
 import './App.scss';
-import { Switch, Route } from 'react-router';
+import { Routes, Route } from 'react-router-dom';
 import Profile from './components/profile/Profile';
 import Feed from './components/feed/Feed';
 import Header from './components/header/Header';
@@ -17,31 +16,31 @@ export enum AppRoutePath {
 const PrivateApp = () => {
   return (
     <div className="App">
-      <Route component={EnsureLoggedIn}></Route>
+      <Route component={<EnsureLoggedIn />} />
       <header className="header">
         <Header></Header>
       </header>
       <main className="content">
-        <Switch>
+        <Routes>
           <Route path={AppRoutePath.Feed} exact={true}>
             <Feed />
           </Route>
           <Route path={AppRoutePath.Profile} exact={true}>
             <Profile />
           </Route>
-        </Switch>
+        </Routes>
       </main>
       <Footer></Footer>
     </div>
   )
 }
 
-function App() {
+const App = () => {
   return (
-    <Switch>
-      <Route path={AppRoutePath.Login} component={Login}></Route>
-      <Route component={PrivateApp}></Route>
-    </Switch>
+    <Routes>
+      <Route path={AppRoutePath.Login} element={Login}></Route>
+      <Route element={PrivateApp}></Route>
+    </Routes>
 
   );
 }

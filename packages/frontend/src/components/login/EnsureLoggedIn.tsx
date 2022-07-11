@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers/rootReducer';
 import { AppRoutePath } from '../../App';
 
-const EnsureLoggedIn = (props: RouteComponentProps) => {
+const EnsureLoggedIn = () => {
     const { isLoggedIn } = useSelector((state: AppState) => state.user);
-    if(!isLoggedIn){
-        props.history.replace(AppRoutePath.Login);
+    const navigate = useNavigate()
+    if (!isLoggedIn) {
+        navigate(AppRoutePath.Login, { replace: true });
     }
     return null;
 }
 
-export default withRouter(EnsureLoggedIn);
+export default EnsureLoggedIn;

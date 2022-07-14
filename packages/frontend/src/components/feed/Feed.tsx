@@ -98,9 +98,6 @@ const Feed = () => {
         })
     }
 
-    const fetchUserAccount = async () => {
-        const account = FeedServices.getUserAccount();
-    }
 
     const sendData = async (event: any) => {
         event.preventDefault();

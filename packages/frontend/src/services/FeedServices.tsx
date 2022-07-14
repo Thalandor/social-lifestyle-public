@@ -8,7 +8,7 @@ export const getAll = async () => {
     return response.data;
 }
 
-export const getUserAccount = async() => {
+export const getUserAccount = async () => {
     const web3 = await initWeb3();
     if (web3) {
         const accounts = await web3.eth.getAccounts();
@@ -17,16 +17,16 @@ export const getUserAccount = async() => {
     } else {
         console.log("not user account detected")
     }
-} 
+}
 
-export const create = async(data: any) => {
+export const create = async (data: any) => {
     const response = await axios.post("/feed", data);
     return response.data;
 }
 
-export const sendTip = async(feedCreator: string, category: string, amount: number) => {
+export const sendTip = async (feedCreator: string, category: string, amount: number) => {
     const web3 = await initWeb3();
-    if(web3) {
+    if (web3) {
         const tokenContract = new web3.eth.Contract(
             TravelPonziCoinABI,
             TravelPonziCoinContractAddress
@@ -35,13 +35,14 @@ export const sendTip = async(feedCreator: string, category: string, amount: numb
         const currentAccount = accounts[0];
         const gasPrice = await web3.eth.getGasPrice();
         const gasEstimate = await tokenContract.methods.tipUser(feedCreator, category, amount).estimateGas({ from: currentAccount });
-        await tokenContract.methods.tipUser(feedCreator, category, amount).send({ from: currentAccount , gasPrice: gasPrice, gas: gasEstimate});;
-    }     
+        await tokenContract.methods.tipUser(feedCreator, category, amount).send({ from: currentAccount, gasPrice: gasPrice, gas: gasEstimate });;
+    }
 }
 
-export default {
+const FeedServices = {
     getAll,
     getUserAccount,
     create,
     sendTip
-};
+}
+export default FeedServices;

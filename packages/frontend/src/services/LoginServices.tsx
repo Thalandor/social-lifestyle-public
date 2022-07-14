@@ -21,7 +21,7 @@ export const login = async (
 };
 
 export const register = async (publicAddress: string, username: string) => {
-  const response = await axios.post("http://localhost:3001/register", {
+  await axios.post("http://localhost:3001/register", {
     publicAddress,
     username
   });

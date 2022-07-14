@@ -6,16 +6,11 @@ import { signInUser } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 import { AppRoutePath } from "../../App";
 import styles from "./Login.module.scss";
-import { Dialog, DialogTitle, DialogContent, DialogContentText, FormControl, InputLabel, Input, IconButton, Select, Chip, MenuItem, DialogActions, TextField, Snackbar } from '@material-ui/core';
-import classes from '*.module.css';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, TextField, Snackbar } from '@material-ui/core';
 import { useState } from 'react';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useNavigate } from "react-router-dom";
 
-interface UserInfo {
-  publicAddress: string;
-  nonce: string;
-}
 
 function Alert(props: any) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -123,7 +118,18 @@ const Login = () => {
         <Button variant="outlined" color="primary" onClick={handleLoginBtnClick}>
           Login with metamask
         </Button>
-        <h5><a onClick={openRegisterDialogHandler}>Don't have an account? Register here!</a></h5>
+
+
+
+        <h5>
+          {
+            /* eslint-disable */
+          }
+          <a onClick={openRegisterDialogHandler}>Don't have an account? Register here!</a>
+          {
+            /* eslint-enable */
+          }
+        </h5>
       </div>
       <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleSnackbarClose}>
         <Alert onClose={handleSnackbarClose} severity="error">

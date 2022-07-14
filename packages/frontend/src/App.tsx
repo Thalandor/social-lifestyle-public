@@ -22,10 +22,10 @@ const PrivateApp = () => {
       </header>
       <main className="content">
         <Routes>
-          <Route path={AppRoutePath.Feed} exact={true}>
+          <Route path={AppRoutePath.Feed} >
             <Feed />
           </Route>
-          <Route path={AppRoutePath.Profile} exact={true}>
+          <Route path={AppRoutePath.Profile}>
             <Profile />
           </Route>
         </Routes>

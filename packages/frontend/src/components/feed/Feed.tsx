@@ -18,7 +18,6 @@ import FeedServices from '../../services/FeedServices';
 import FeedList from '../../components/feedList/FeedList';
 
 
-import axios from 'axios';
 
 export const categories = [
     'Techno',
@@ -37,8 +36,8 @@ const Feed = () => {
         category: []
     });
 
-    const [fileData, setFile] = React.useState< string | ArrayBuffer | null>();
-    
+    const [fileData, setFile] = React.useState<string | ArrayBuffer | null>();
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -55,7 +54,7 @@ const Feed = () => {
             },
             root: {
                 '& > *': {
-                margin: theme.spacing(1),
+                    margin: theme.spacing(1),
                 },
             },
             input: {
@@ -73,29 +72,28 @@ const Feed = () => {
                 paddingBottom: theme.spacing(8),
             },
         }),
-    );    
+    );
 
     const classes = useStyles();
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
     const MenuProps = {
-      PaperProps: {
-        style: {
-          maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-          width: 250,
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 250,
+            },
         },
-      },
     };
 
-    
 
-    const [category, setCategory] = React.useState<string[]>([]);
+
 
     const handleInputChange = (event: any) => {
         setData({
             ...data,
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
 
         })
     }
@@ -104,25 +102,25 @@ const Feed = () => {
         const account = FeedServices.getUserAccount();
     }
 
-    const sendData = async (event:any) => {
+    const sendData = async (event: any) => {
         event.preventDefault();
         const user = await FeedServices.getUserAccount();
-        await FeedServices.create({...data, image: fileData, user});
+        await FeedServices.create({ ...data, image: fileData, user });
         setOpen(false);
     }
-    
+
     const getBase64 = (event: any) => {
         let file = event.target.files[0];
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-          setFile(reader.result);
+            setFile(reader.result);
         };
-        
-        
+
+
         reader.onerror = (error) => {
-          console.log('Error: ', error);
-        };        
+            console.log('Error: ', error);
+        };
     }
 
     return (
@@ -139,11 +137,11 @@ const Feed = () => {
                     <form className={classes.root} noValidate autoComplete="off" onSubmit={sendData}>
                         <FormControl>
                             <InputLabel>Title</InputLabel>
-                            <Input id="title" name="title" value={data.title} onChange={handleInputChange}/>
+                            <Input id="title" name="title" value={data.title} onChange={handleInputChange} />
                         </FormControl>
                         <FormControl>
                             <InputLabel>Description</InputLabel>
-                            <Input id="description" multiline={true} name="description" value={data.description} onChange={handleInputChange}/>
+                            <Input id="description" multiline={true} name="description" value={data.description} onChange={handleInputChange} />
                         </FormControl>
                         <FormControl>
                             <input accept="image/*" className={classes.input} id="icon-button-file" type="file" name="selectedImage" onChange={getBase64} />
@@ -151,35 +149,35 @@ const Feed = () => {
                                 <IconButton color="primary" aria-label="upload picture" component="span">
                                     <PhotoCamera />
                                 </IconButton>
-                             </label>
-                        </FormControl>                                                         
+                            </label>
+                        </FormControl>
                         <FormControl>
                             <InputLabel id="demo-mutiple-chip-label">Category</InputLabel>
-                                <Select
-                                    labelId="demo-mutiple-chip-label"
-                                    id="demo-mutiple-chip"
-                                    name="category"
-                                    multiple
-                                    value={data.category}
-                                    onChange={handleInputChange}
-                                    input={<Input id="select-multiple-chip" />}
-                                    renderValue={(selected) => (
-                                        <div className={classes.chips}>
+                            <Select
+                                labelId="demo-mutiple-chip-label"
+                                id="demo-mutiple-chip"
+                                name="category"
+                                multiple
+                                value={data.category}
+                                onChange={handleInputChange}
+                                input={<Input id="select-multiple-chip" />}
+                                renderValue={(selected) => (
+                                    <div className={classes.chips}>
                                         {(selected as string[]).map((value) => (
                                             <Chip key={value} label={value} className={classes.chip} />
                                         ))}
-                                        </div>
-                                    )}
-                                    MenuProps={MenuProps}
-                                >
-                                    {categories.map((category) => (
-                                        <MenuItem key={category} value={category}>
-                                            {category}
-                                        </MenuItem>
-                                    ))}                        
-                                </Select>
+                                    </div>
+                                )}
+                                MenuProps={MenuProps}
+                            >
+                                {categories.map((category) => (
+                                    <MenuItem key={category} value={category}>
+                                        {category}
+                                    </MenuItem>
+                                ))}
+                            </Select>
                         </FormControl>
-                    </form>                
+                    </form>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">

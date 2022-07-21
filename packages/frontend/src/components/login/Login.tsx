@@ -1,16 +1,28 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
-import { getUserInfo, login, signMessage, register } from "../../services/LoginServices";
+import {
+  getUserInfo,
+  login,
+  signMessage,
+  register,
+} from "../../services/LoginServices";
 import { initWeb3 } from "../../utils/web3Utils";
 import { signInUser } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 import { AppRoutePath } from "../../App";
 import styles from "./Login.module.scss";
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, TextField, Snackbar } from '@material-ui/core';
-import { useState } from 'react';
-import MuiAlert from '@material-ui/lab/Alert';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  TextField,
+  Snackbar,
+} from "@material-ui/core";
+import { useState } from "react";
+import MuiAlert from "@material-ui/lab/Alert";
 import { useNavigate } from "react-router-dom";
-
 
 function Alert(props: any) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -18,9 +30,9 @@ function Alert(props: any) {
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleLoginBtnClick = async () => {
@@ -45,9 +57,9 @@ const Login = () => {
       const response = await login(signature, publicAddress);
       if (response) {
         saveJWT(response);
-        navigate(AppRoutePath.Feed);
+        navigate(AppRoutePath.Root);
       }
-    } catch (err) { }
+    } catch (err) {}
   };
 
   const saveJWT = (jwt: string) => {
@@ -56,11 +68,11 @@ const Login = () => {
 
   const openRegisterDialogHandler = () => {
     setOpenModal(true);
-  }
+  };
 
   const handleCancelModalRegister = () => {
     setOpenModal(false);
-  }
+  };
 
   const handleRegister = async () => {
     const web3 = await initWeb3();
@@ -75,16 +87,16 @@ const Login = () => {
       }
     }
     setOpenModal(false);
-  }
+  };
 
   const onChangeUsernameHandler = (e: any) => {
     console.log(e.target.value);
     setUsername(e.target.value);
-  }
+  };
 
   const handleSnackbarClose = () => {
     setOpenSnackbar(false);
-  }
+  };
 
   return (
     <>
@@ -115,23 +127,27 @@ const Login = () => {
         </DialogActions>
       </Dialog>
       <div className={styles.container}>
-        <Button variant="outlined" color="primary" onClick={handleLoginBtnClick}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleLoginBtnClick}
+        >
           Login with metamask
         </Button>
 
-
-
         <h5>
-          {
-            /* eslint-disable */
-          }
-          <a onClick={openRegisterDialogHandler}>Don't have an account? Register here!</a>
-          {
-            /* eslint-enable */
-          }
+          {/* eslint-disable */}
+          <a onClick={openRegisterDialogHandler}>
+            Don't have an account? Register here!
+          </a>
+          {/* eslint-enable */}
         </h5>
       </div>
-      <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleSnackbarClose}>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
         <Alert onClose={handleSnackbarClose} severity="error">
           User not registered!!!!!!
         </Alert>

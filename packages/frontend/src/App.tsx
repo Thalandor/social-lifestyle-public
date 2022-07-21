@@ -8,7 +8,7 @@ import Login from "./components/login/Login";
 import Footer from "./components/footer/Footer";
 
 export enum AppRoutePath {
-  Feed = "/",
+  Root = "/",
   Profile = "/Profile",
   Login = "/Login",
 }
@@ -22,12 +22,8 @@ const PrivateApp = () => {
       </header>
       <main className="content">
         <Routes>
-          <Route path={AppRoutePath.Feed} >
-            <Feed />
-          </Route>
-          <Route path={AppRoutePath.Profile}>
-            <Profile />
-          </Route>
+          <Route path={AppRoutePath.Root} element={<Feed />} />
+          <Route path={AppRoutePath.Profile} element={<Profile />} />
         </Routes>
       </main>
       <Footer></Footer>
@@ -38,7 +34,8 @@ const PrivateApp = () => {
 const App = () => {
   return (
     <Routes>
-      <Route path={AppRoutePath.Login} element={<Login />}></Route>
+      <Route path={AppRoutePath.Root} element={<Login />} />
+      <Route path={AppRoutePath.Login} element={<Login />} />
       <Route element={<PrivateApp />}></Route>
     </Routes>
   );

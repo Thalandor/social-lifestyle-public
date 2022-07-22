@@ -1,15 +1,63 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { getPicture, getTokensByCategory } from '../../services/AvatarServices';
 import { signMetatransaction, tipUserMetaTransaction } from '../../services/TipServices';
 import { categories } from '../feed/Feed';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import Avatar from '@material-ui/core/Avatar';
-import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@mui/material/Grid';
+import CssBaseline from '@mui/material/CssBaseline';
+import Paper from '@mui/material/Paper';
+import Avatar from '@mui/material/Avatar';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import Typography from '@mui/material/Typography';
+
+
+
+const PREFIX = 'Profile';
+
+const classes = {
+    root: `${PREFIX}-root`,
+    profileContent: `${PREFIX}-profileContent`,
+    image: `${PREFIX}-image`,
+    paper: `${PREFIX}-paper`,
+    avatar: `${PREFIX}-avatar`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.root}`]: {
+		height: '100vh',
+	},
+
+    [`& .${classes.profileContent}`]: {
+		backgroundColor: theme.palette.background.paper,
+		padding: theme.spacing(8, 0, 6),
+	},
+
+    [`& .${classes.image}`]: {
+		backgroundImage: 'url(https://source.unsplash.com/random)',
+		backgroundRepeat: 'no-repeat',
+		backgroundColor:
+			theme.palette.mode === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+	},
+
+    [`& .${classes.paper}`]: {
+		margin: theme.spacing(8, 4),
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+	},
+
+    [`& .${classes.avatar}`]: {
+		margin: theme.spacing(1),
+		backgroundColor: theme.palette.secondary.main,
+	}
+}));
 
 
 
@@ -23,36 +71,8 @@ interface Medal {
 	title: string
 }
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		height: '100vh',
-	},
-	profileContent: {
-		backgroundColor: theme.palette.background.paper,
-		padding: theme.spacing(8, 0, 6),
-	},
-	image: {
-		backgroundImage: 'url(https://source.unsplash.com/random)',
-		backgroundRepeat: 'no-repeat',
-		backgroundColor:
-			theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
-	},
-	paper: {
-		margin: theme.spacing(8, 4),
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
-	},
-}));
-
 const Profile = () => {
-	const classes = useStyles();
+
 	const [ipfsSrc, setIpfsSrc] = useState();
 	const [rewards, setRewards] = useState<Reward[]>([]);
 	useEffect(() => {
@@ -89,7 +109,7 @@ const Profile = () => {
 	const getMedals = () => {
 		const medals: Medal[] = [];
 		if (!rewards || rewards.length === 0) {
-			return <div>No medals currently :(</div>
+			return <Root>No medals currently :(</Root>;
 		} else {
 			rewards.forEach(r => {
 				if (r.tokens > 0) {

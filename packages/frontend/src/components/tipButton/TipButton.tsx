@@ -1,6 +1,6 @@
 import * as React from 'react';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import IconButton from '@material-ui/core/IconButton';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import IconButton from '@mui/material/IconButton';
 import { sendTip } from '../../services/FeedServices';
 
 
@@ -17,10 +17,10 @@ const TipButton = ({ category, amount, creator }: Props) => {
     }
 
     return (
-        <IconButton aria-label="give a tip" onClick={onClickHandler}>
+        <IconButton aria-label="give a tip" onClick={onClickHandler} size="large">
             <MonetizationOnIcon />
         </IconButton>
-    )
+    );
 }
 
 export default TipButton;

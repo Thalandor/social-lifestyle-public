@@ -1,5 +1,5 @@
 import * as React from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import {
   getUserInfo,
   login,
@@ -19,9 +19,9 @@ import {
   DialogActions,
   TextField,
   Snackbar,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useState } from "react";
-import MuiAlert from "@material-ui/lab/Alert";
+import MuiAlert from '@mui/material/Alert';
 import { useNavigate } from "react-router-dom";
 
 function Alert(props: any) {

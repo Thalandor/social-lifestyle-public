@@ -1,34 +1,43 @@
 import * as React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+const PREFIX = 'Footer';
+
+const classes = {
+    footer: `${PREFIX}-footer`
+};
+
+const Root = styled('footer')((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.footer}`]: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(6),
+    }
+}));
 
 
 
 function Copyright() {
     return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
+        <Typography variant="body2" color="textSecondary" align="center">
+          {'Copyright © '}
+          <Link color="inherit" href="https://material-ui.com/" underline="hover">
+            Your Website
+          </Link>{' '}
+          {new Date().getFullYear()}
+          {'.'}
+        </Typography>
     );
   }
 
-const useStyles = makeStyles((theme) => ({
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6),
-    },
-}));
-
 const Footer = () => {
-    const classes = useStyles();
-    return(
-        <footer className={classes.footer}>
+
+    return (
+        <Root className={classes.footer}>
             <Typography variant="h6" align="center" gutterBottom>
                 Footer
             </Typography>
@@ -36,8 +45,8 @@ const Footer = () => {
                  Something here to give the footer a purpose!
             </Typography>
             <Copyright />
-      </footer>
-    )
+      </Root>
+    );
 }
 
 export default Footer;

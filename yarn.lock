@@ -4832,6 +4832,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"backend@workspace:packages/backend":
+  version: 0.0.0-use.local
+  resolution: "backend@workspace:packages/backend"
+  dependencies:
+    body-parser: ^1.19.0
+    cors: ^2.8.5
+    eth-sig-util: ^2.5.3
+    ethereumjs-util: ^7.0.5
+    express: ^4.17.1
+    jsonwebtoken: ^8.5.1
+    mongoose: ^5.10.3
+    nodemon: ^2.0.6
+    web3: ^1.3.0
+  languageName: unknown
+  linkType: soft
+
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
@@ -8064,6 +8080,53 @@ __metadata:
   checksum: 13ea8b08f91e669a64e3ba3a20eb79d7ca5379a81f1ff7f4310d54e2320645503cc0c78daedc93dfb6191287295f6479544a649c64d8e41a1c0fb0c221552346
   languageName: node
   linkType: hard
+
+"frontend@workspace:packages/frontend":
+  version: 0.0.0-use.local
+  resolution: "frontend@workspace:packages/frontend"
+  dependencies:
+    "@emotion/react": ^11.9.3
+    "@emotion/styled": ^11.9.3
+    "@material-ui/core": ^4.11.0
+    "@material-ui/icons": ^4.9.1
+    "@material-ui/lab": ^4.0.0-alpha.56
+    "@mui/icons-material": ^5.8.4
+    "@mui/material": ^5.9.1
+    "@testing-library/jest-dom": ^4.2.4
+    "@testing-library/react": ^9.3.2
+    "@testing-library/user-event": ^7.1.2
+    "@types/jest": ^24.0.0
+    "@types/node": ^12.0.0
+    "@types/react": ^18.0.15
+    "@types/react-dom": ^18.0.6
+    "@types/react-redux": ^7.1.9
+    assert: ^2.0.0
+    axios: ^0.20.0
+    buffer: ^6.0.3
+    crypto-browserify: ^3.12.0
+    eip-712: ^0.4.2
+    eth-sig-util: ^2.5.3
+    ethereumjs-util: ^7.0.7
+    https-browserify: ^1.0.0
+    os-browserify: ^0.3.0
+    process: ^0.11.10
+    react: ^18.2.0
+    react-app-rewired: ^2.2.1
+    react-dom: ^18.2.0
+    react-redux: ^7.2.1
+    react-router-dom: ^6.3.0
+    react-scripts: 5.0.1
+    redux: ^4.0.5
+    redux-devtools-extension: ^2.13.8
+    sass: ^1.53.0
+    stream-browserify: ^3.0.0
+    stream-http: ^3.2.0
+    typescript: ^4.7.4
+    url: ^0.11.0
+    web3: ^1.7.5-rc.1
+    web3-utils: ^1.7.4
+  languageName: unknown
+  linkType: soft
 
 "fs-extra@npm:^10.0.0":
   version: 10.1.0
@@ -14525,69 +14588,6 @@ __metadata:
   checksum: b5167a7142c1da704c0e3af85c402002b597081dd9575031a90b4f229ca5678e9a36e8a374f1814c8156a725d17008ae3bde63b92f9cfd132526379e580bec8b
   languageName: node
   linkType: hard
-
-"social-lifestyle-backend@workspace:packages/backend":
-  version: 0.0.0-use.local
-  resolution: "social-lifestyle-backend@workspace:packages/backend"
-  dependencies:
-    body-parser: ^1.19.0
-    cors: ^2.8.5
-    eth-sig-util: ^2.5.3
-    ethereumjs-util: ^7.0.5
-    express: ^4.17.1
-    jsonwebtoken: ^8.5.1
-    mongoose: ^5.10.3
-    nodemon: ^2.0.6
-    web3: ^1.3.0
-  languageName: unknown
-  linkType: soft
-
-"social-lifestyle-frontend@workspace:packages/frontend":
-  version: 0.0.0-use.local
-  resolution: "social-lifestyle-frontend@workspace:packages/frontend"
-  dependencies:
-    "@emotion/react": ^11.9.3
-    "@emotion/styled": ^11.9.3
-    "@material-ui/core": ^4.11.0
-    "@material-ui/icons": ^4.9.1
-    "@material-ui/lab": ^4.0.0-alpha.56
-    "@mui/icons-material": ^5.8.4
-    "@mui/material": ^5.9.1
-    "@testing-library/jest-dom": ^4.2.4
-    "@testing-library/react": ^9.3.2
-    "@testing-library/user-event": ^7.1.2
-    "@types/jest": ^24.0.0
-    "@types/node": ^12.0.0
-    "@types/react": ^18.0.15
-    "@types/react-dom": ^18.0.6
-    "@types/react-redux": ^7.1.9
-    assert: ^2.0.0
-    axios: ^0.20.0
-    buffer: ^6.0.3
-    crypto-browserify: ^3.12.0
-    eip-712: ^0.4.2
-    eth-sig-util: ^2.5.3
-    ethereumjs-util: ^7.0.7
-    https-browserify: ^1.0.0
-    os-browserify: ^0.3.0
-    process: ^0.11.10
-    react: ^18.2.0
-    react-app-rewired: ^2.2.1
-    react-dom: ^18.2.0
-    react-redux: ^7.2.1
-    react-router-dom: ^6.3.0
-    react-scripts: 5.0.1
-    redux: ^4.0.5
-    redux-devtools-extension: ^2.13.8
-    sass: ^1.53.0
-    stream-browserify: ^3.0.0
-    stream-http: ^3.2.0
-    typescript: ^4.7.4
-    url: ^0.11.0
-    web3: ^1.7.5-rc.1
-    web3-utils: ^1.7.4
-  languageName: unknown
-  linkType: soft
 
 "social-lifestyle-public@workspace:.":
   version: 0.0.0-use.local

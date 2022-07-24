@@ -31,9 +31,9 @@ services:
       - "3001:3001"
     restart: on-failure
     container_name: backend
-    volumes:
-      - /app/node_modules
-      - ./backend:/app
+    # volumes:
+    #   - /app/node_modules
+    #   - ./backend:/app
     depends_on:
       - mongo
   mongo:

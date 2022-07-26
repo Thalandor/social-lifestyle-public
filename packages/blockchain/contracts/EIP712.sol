@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-pragma solidity 0.6.12;
+pragma solidity 0.8.9;
 
-import { ECRecover } from "./ECRecover.sol";
+import {ECRecover} from "./ECRecover.sol";
 
 /**
  * @title EIP712
@@ -32,8 +32,8 @@ import { ECRecover } from "./ECRecover.sol";
  */
 library EIP712 {
     // keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)")
-    bytes32
-        public constant EIP712_DOMAIN_TYPEHASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f;
+    bytes32 public constant EIP712_DOMAIN_TYPEHASH =
+        0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f;
 
     /**
      * @notice Make EIP712 domain separator

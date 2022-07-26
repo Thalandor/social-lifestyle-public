@@ -22,16 +22,16 @@
  * SOFTWARE.
  */
 
-pragma solidity 0.6.12;
+pragma solidity 0.8.9;
 
-import { EIP712Domain } from "./EIP712Domain.sol";
-import { EIP712 } from "./EIP712.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
+import {EIP712Domain} from "./EIP712Domain.sol";
+import {EIP712} from "./EIP712.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 abstract contract EIP3009 is EIP712Domain, ERC20 {
     // keccak256("TransferWithAuthorization(address from,address to,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)")
-    bytes32
-        public constant TRANSFER_WITH_AUTHORIZATION_TYPEHASH = 0x7c7c6cdb67a18743f49ec6fa9b35f50d52ed05cbed4cc592e13b44501c1a2267;
+    bytes32 public constant TRANSFER_WITH_AUTHORIZATION_TYPEHASH =
+        0x7c7c6cdb67a18743f49ec6fa9b35f50d52ed05cbed4cc592e13b44501c1a2267;
 
     /**
      * @dev authorizer address => nonce => state (true = used / false = unused)
@@ -40,8 +40,8 @@ abstract contract EIP3009 is EIP712Domain, ERC20 {
 
     event AuthorizationUsed(address indexed authorizer, bytes32 indexed nonce);
 
-    string
-        internal constant _INVALID_SIGNATURE_ERROR = "EIP3009: invalid signature";
+    string internal constant _INVALID_SIGNATURE_ERROR =
+        "EIP3009: invalid signature";
 
     /**
      * @notice Returns the state of an authorization
@@ -113,8 +113,14 @@ abstract contract EIP3009 is EIP712Domain, ERC20 {
         uint256 validAfter,
         uint256 validBefore
     ) internal view {
-        require(now > validAfter, "EIP3009: authorization is not yet valid");
-        require(now < validBefore, "EIP3009: authorization is expired");
+        require(
+            block.timestamp > validAfter,
+            "EIP3009: authorization is not yet valid"
+        );
+        require(
+            block.timestamp < validBefore,
+            "EIP3009: authorization is expired"
+        );
         require(
             !_authorizationStates[authorizer][nonce],
             "EIP3009: authorization is used"

@@ -5837,7 +5837,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"blockchain@workspace:packages/blockchain":
+"blockchain@workspace:*, blockchain@workspace:packages/blockchain":
   version: 0.0.0-use.local
   resolution: "blockchain@workspace:packages/blockchain"
   dependencies:
@@ -9562,6 +9562,7 @@ __metadata:
     "@types/react-redux": ^7.1.9
     assert: ^2.0.0
     axios: ^0.20.0
+    blockchain: "workspace:*"
     buffer: ^6.0.3
     crypto-browserify: ^3.12.0
     eip-712: ^0.4.2

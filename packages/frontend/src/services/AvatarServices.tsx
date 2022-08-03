@@ -1,7 +1,9 @@
-import { AvatarABI, AvatarContractAddress } from "../components/config/contractInfo";
+import {
+  AvatarABI,
+  AvatarContractAddress,
+} from "../components/config/contractInfo";
 import { initWeb3 } from "../utils/web3Utils";
-
-
+import { Avatar__factory } from "blockchain/typechain-types/index";
 
 export const getPicture = async () => {
   const web3 = await initWeb3();
@@ -11,7 +13,7 @@ export const getPicture = async () => {
     const addresses = await web3.eth.getAccounts();
     const myAddress = addresses[0];
     const avatarContract = new web3.eth.Contract(
-      AvatarABI,
+      Avatar__factory.abi,
       AvatarContractAddress
     );
     const numberOfTokens = await avatarContract.methods
@@ -31,7 +33,6 @@ export const getPicture = async () => {
   }
 };
 
-
 export const getTokensByCategory = async (category: string) => {
   const web3 = await initWeb3();
   if (web3) {
@@ -43,7 +44,9 @@ export const getTokensByCategory = async (category: string) => {
       AvatarABI,
       AvatarContractAddress
     );
-    const tokens = await avatarContract.methods.getTokensByCategory(myAddress, category).call(); 
+    const tokens = await avatarContract.methods
+      .getTokensByCategory(myAddress, category)
+      .call();
     return tokens;
   }
-}
+};

@@ -1,15 +1,12 @@
-import Web3 from "web3";
-
+import ethers from "ethers";
 
 export const initWeb3 = async () => {
-    let ethereum = (window as any).ethereum;
-    let windowWeb3 = (window as any).web3;
-    // New metamask version
-    if (typeof ethereum !== 'undefined') {
-        await ethereum.enable();
-        return new Web3(ethereum);
-    // Else for backwards compatibility			
-    } else if (typeof windowWeb3 !== 'undefined') {
-        return new Web3(windowWeb3.currentProvider);
-    } 
-}
+  const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+  let ethereum = (window as any).ethereum;
+  //   let windowWeb3 = (window as any).web3;
+  // New metamask version
+  if (typeof ethereum !== "undefined") {
+    await provider.send("eth_requestAccounts", []);
+  }
+  return provider;
+};

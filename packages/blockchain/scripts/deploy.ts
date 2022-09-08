@@ -4,15 +4,20 @@ async function main() {
   const currentTimestampInSeconds = Math.round(Date.now() / 1000);
   const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
   const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
-
+  ethers.utils.AbiCoder
   const lockedAmount = ethers.utils.parseEther("1");
 
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+  const Avatar = await ethers.getContractFactory("Avatar");
+  const TravelPonziCoin = await ethers.getContractFactory("TravelPonziCoin");
+  const travelPonziCoin = await TravelPonziCoin.deploy(30000);
+  const avatar = await Avatar.deploy();
+  await travelPonziCoin.deployed();
+  await avatar.deployed();
 
-  await lock.deployed();
 
-  console.log("Lock with 1 ETH deployed to:", lock.address);
+  console.log("TravelPonziCoin Contract deployed to:", travelPonziCoin.address);
+  console.log("TravelPonziCoin Contract deployed to", avatar.address);
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere

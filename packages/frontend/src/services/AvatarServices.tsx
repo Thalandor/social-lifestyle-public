@@ -6,13 +6,13 @@ import { initWeb3 } from "../utils/web3Utils";
 import { Avatar__factory } from "blockchain/typechain-types/index";
 
 export const getPicture = async () => {
-  const web3 = await initWeb3();
-  if (web3) {
+  const provider = await initWeb3();
+  if (provider) {
     //https://ipfs.io/ipfs/QmbpdtiSDir4xEXR5F6VMcFwb9wfyys9v6JpNz8kPAteqW?filename=avatar_default_uri.json test information
     // 0x4668b4459fAEbA07606E0bc829E12646294Ec8C1  Ropsten contract
-    const addresses = await web3.eth.getAccounts();
+    const addresses = await provider.gets.eth.getAccounts();
     const myAddress = addresses[0];
-    const avatarContract = new web3.eth.Contract(
+    const avatarContract = new provider.eth.Contract(
       Avatar__factory.abi,
       AvatarContractAddress
     );

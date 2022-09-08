@@ -23,33 +23,24 @@ export const login = async (
 export const register = async (publicAddress: string, username: string) => {
   await axios.post("http://localhost:3001/register", {
     publicAddress,
-    username
+    username,
   });
-}
+};
 
 export const signMessage = async (msg: string): Promise<string> => {
   return new Promise(async (resolve, reject) => {
     var hexMsg = bufferToHex(new Buffer(msg, "utf8"));
-    const web3 = await initWeb3();
-    if (web3) {
-      const accounts = await web3.eth.getAccounts();
-      const currentAccount = accounts[0];
+    const provider = await initWeb3();
+    if (provider) {
+      const signer = provider.getSigner();
+      const currentAccount = await signer.getAddress();
       const params = [hexMsg, currentAccount];
       // Web3.js doesn't provide a personal_sign method for now, until community decided the final implementation
       // that's why we have to call directly the function provided by the provider (metamask on this case)
       const method = "personal_sign";
-      (web3.currentProvider as any).sendAsync(
-        {
-          method,
-          params,
-          currentAccount,
-        },
-        function (err: any, result: any) {
-          if (err) return reject(err);
-          if (result.error) return reject(result.error);
-          return resolve(result.result);
-        }
-      );
+      const result = await provider.send(method, params);
+      console.log("result: :", result);
+      return result.result;
     }
   });
 };

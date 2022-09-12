@@ -10,7 +10,6 @@ services:
     depends_on:
       - mongo
   webapp:
-    stdin_open: true # Needed, seems a bug with react-scripts 3.4.1 :(
     build:
       context: ./packages/frontend
       dockerfile: Dockerfile

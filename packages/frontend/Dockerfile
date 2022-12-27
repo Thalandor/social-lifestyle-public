@@ -3,8 +3,8 @@ WORKDIR /app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 ## install only the packages defined in the package-lock.json (faster than the normal npm install)
-RUN yarn install
+RUN yarn
 # Copy the contents of the project to the image
 COPY . .
 # Run 'npm start' when the container starts.
-CMD ["yarn", "start"]
+CMD ["yarn", "run", "start"]

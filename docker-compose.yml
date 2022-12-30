@@ -10,17 +10,18 @@ services:
     depends_on:
       - mongo
   webapp:
-    stdin_open: true # Needed, seems a bug with react-scripts 3.4.1 :(
-    build:
-      context: ./packages/frontend
-      dockerfile: Dockerfile
+    # working_dir: /usr/app/src
+    # image: node:12-alpine
+    # env_file: ./envs/frontend.env
+    # networks:
+    #   - abb-net
     volumes:
-      - /app/node_modules
-      - ./frontend:/app
+      - .:/app
     ports:
       - "3000:3000"
     restart: on-failure
-    container_name: social-lifestyle-webapp
+    container_name: frontend
+    command: ["yarn", "workspace", "frontend", "run", "start"]
     depends_on:
       - backend
   backend:

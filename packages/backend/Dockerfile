@@ -1,5 +1,5 @@
 # Specify a base image
-FROM node:latest 
+FROM node:alpine 
 WORKDIR /app
 # Install dependencies
 COPY ./package.json .
